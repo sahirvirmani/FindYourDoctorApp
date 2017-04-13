@@ -9,6 +9,6 @@ package FileHandler;
  *
  * @author Sahir
  */
-public interface FileRead {
+public interface FileRead { 
     public void getFileText();
 }

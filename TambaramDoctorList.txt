@@ -1,0 +1,43 @@
+*
+ENT Specialist
+Dr.K.Sonam
+3.8
+9465646978
+Hindu Mission Hospital, Mudichur Road, Tambaram, Chennai
+*
+Endocrinologist
+Dr.L.Deep
+4.7
+914657531
+Annai Arul Hospital, Kakkan Street, Tambaram, Chennai
+*
+Orthopedist
+Dr.S.Singh
+4.5
+876578468
+Kasthuri Hospital, Shanmugam road, Tambaram, Chennai
+*
+Oncologist
+Dr.P.Lakhan
+4.8
+7484214536
+Deepam Hospital, Duraiswamy Reddy Street, Tambaram, Chennai
+*
+Physician
+Dr.C.Khanna
+4.1
+7894558632
+Mano Hospital, Motilal Nagar, Tambaram
+*
+Cardiologist
+Dr.R.Varu
+4.0
+7358331032
+Sri Ragavendrar Hospital, Camp Road, Tambaram, Chennai
+*
+Pulmonologist
+Dr.U.Kalyan
+4.2
+8787965412
+Jawahar Hospital, Jaya Street, Tambaram, Chennai
+$

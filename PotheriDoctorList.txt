@@ -1,0 +1,43 @@
+*
+ENT Specialist
+Dr.K.Saurav
+3.9
+9465745214
+V Care Hospital, GST Road, Potheri, Chennai
+*
+Endocrinologist
+Dr.K.Mittal
+5.0
+9787462531
+SRM Hospital, SRM University, Potheri, Chennai
+*
+Orthopedist
+Dr.L.Balagurusamy
+4.4
+8765895862
+K.R.Hospital, GST Road, Potheri, Chennai
+*
+Oncologist
+Dr.A.Keelakani
+4.2
+7485692536
+SRM Hospital, SRM University, Potheri, Chennai
+*
+Physician
+Dr.H.Swathi
+4.9
+9762458632
+Prolife Hospital, GST Road, Potheri, Chennai
+*
+Cardiologist
+Dr.A.David
+4.8
+9654754125
+M.C.Hospital, GST Road, Potheri, Chennai
+*
+Pulmonologist
+Dr.K.Thomas
+4.1
+7658529643
+SRM Hospital, SRM University, Potheri, Chennai
+$

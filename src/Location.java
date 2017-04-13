@@ -161,41 +161,52 @@ public class Location extends javax.swing.JFrame {
         }
     }
     
+    public void endLocation() {
+        Symptoms s = new Symptoms();
+        s.setVisible(true);
+        this.setVisible(false);
+    }
+    
     private void GuindyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuindyButtonActionPerformed
         // TODO add your handling code here:
         loc = "Guindy";
         WritetoFile(loc);
-        
+        endLocation();
     }//GEN-LAST:event_GuindyButtonActionPerformed
 
     private void PotheriButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PotheriButtonActionPerformed
         // TODO add your handling code here:
         loc = "Potheri";
         WritetoFile(loc);
+        endLocation();
     }//GEN-LAST:event_PotheriButtonActionPerformed
 
     private void TambaramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambaramButtonActionPerformed
         // TODO add your handling code here:
         loc = "Tambaram";
         WritetoFile(loc);
+        endLocation();
     }//GEN-LAST:event_TambaramButtonActionPerformed
 
     private void EgmoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EgmoreButtonActionPerformed
         // TODO add your handling code here:
         loc = "Egmore";
         WritetoFile(loc);
+        endLocation();
     }//GEN-LAST:event_EgmoreButtonActionPerformed
 
     private void ChetpetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChetpetButtonActionPerformed
         // TODO add your handling code here:
         loc = "Chetpet";
         WritetoFile(loc);
+        endLocation();
     }//GEN-LAST:event_ChetpetButtonActionPerformed
 
     private void SaidapetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaidapetButtonActionPerformed
         // TODO add your handling code here:
         loc = "Saidapet";
         WritetoFile(loc);
+        endLocation();
     }//GEN-LAST:event_SaidapetButtonActionPerformed
 
      

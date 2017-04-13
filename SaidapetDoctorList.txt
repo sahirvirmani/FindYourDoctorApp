@@ -1,0 +1,43 @@
+*
+ENT Specialist
+Dr.M.Surya
+4.7
+9465648214
+Bora Hospital, Subramania Musali Street, Saidapet, Chennai
+*
+Endocrinologist
+Dr.S.Amitabh
+4.1
+9121462531
+Government Hospital, Jenis Street, Saidapet, Chenai
+*
+Orthopedist
+Dr.P.Preeti
+3.9
+876578462
+R.B.C Hospital, Customs Colony, Saidapet, Chennai
+*
+Oncologist
+Dr.A.Pynam
+4.7
+7485544536
+Chella Surya Hospital, Little Mount, Saidapet, Chennai
+*
+Physician
+Dr.K.Sujata
+4.4
+9746558632
+Poornima Hospital, Mosque Street, Saidapet, Chennai
+*
+Cardiologist
+Dr.C.Jacob
+4.8
+9654754475
+Labour Hospital, Sidco Industrial Estate, Saidapet, Chennai
+*
+Pulmonologist
+Dr.C.Chetan
+4.9
+9764823561
+Austin Hospital, Ranarajapuram, Saidapet, Chennai
+$

@@ -1,0 +1,43 @@
+*
+ENT Specialist
+Dr.G.Ravi
+4.6
+94655448214
+Sri Sainath Hospital, Seetha Nagar, Chetpet, Chennai
+*
+Endocrinologist
+Dr.M.Varadarajan
+3.1
+9124621876
+V.S.Hospitals, E Spur Tank Road, Chetpet, Chennai
+*
+Orthopedist
+Dr.T.Subu
+3.7
+6798463214
+Psymed Hospital, Harrington Road, Chetpet, Chennai
+*
+Oncologist
+Dr.B.Murugesansamy
+4.7
+7485544547
+Bethany Health Care Hospital, CMCT Building, Spur Road, Chetpet, Chennai
+*
+Physician
+Dr.J.Markeloff
+4.9
+9746541632
+Dr.Manju Kulkarni Hospital, Abdulla Street, Chetpet, Chennai
+*
+Cardiologist
+Dr.K.Kalaimani
+4.1
+9214754475
+Kumaran Hospital, E.V.R Periyar Salai, Chetpet, Chennai
+*
+Pulmonologist
+Dr.F.Gautama
+4.7
+9764212121
+Ponmalligai Hospital, New Avadi Road, Chetpet, Chennai
+$

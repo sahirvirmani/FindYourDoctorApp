@@ -1,0 +1,38 @@
+ Cold 
+ Cough 
+ Fever 
+ Sore Throat 
+ Swollen Tonsils 
+ Nausea 
+ Vomiting 
+ Stomach Pain 
+ Indigestion 
+ Headache 
+ Diarrhoea 
+ Body Pain 
+ Joint Pain 
+ Growth on body 
+ Swollen Lymph Nodes 
+ Head Congestion 
+ Blocked Sinuses 
+ Fatigue 
+ Loss of Apetite 
+ Frequent Thirst 
+ Frequent Urination 
+ Blurred Vision 
+ Excessive Hunger 
+ Mental Confusion 
+ Weight Loss 
+ Rashes 
+ Chills 
+ Insomnia 
+ Dizziness 
+ Muscle Spasm 
+ Hallucination 
+ Aggression 
+ Chest Pain 
+ Shortness of Breath 
+ Swollen Extremities 
+ Abdominal Cramps 
+ Dementia 
+ Amnesia 

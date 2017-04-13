@@ -21,16 +21,17 @@ public class LoginScreen extends javax.swing.JFrame implements FileRead {
     public String username;
     char[] password;
     public String userDetailsString;
-    File userDetails;
+    File userDetails, currentUserIndex;
+    int currentUser;
     public LoginScreen() {
         initComponents();
         setTitle("Login");
         this.PasswordNoMatch.setVisible(false);
         try {
-            userDetails = new File("UserDetails.txt");
-            if(!userDetails.exists())
-                userDetails.createNewFile();
-            System.out.println("File created");
+            userDetails = new File("UserLoginDetails.txt");
+            currentUserIndex = new File("CurrentUserIndex.txt");
+            if(!currentUserIndex.exists())
+                currentUserIndex.createNewFile();
         }
         catch (Exception e) {
             System.out.println("Error: " + e);
@@ -40,15 +41,34 @@ public class LoginScreen extends javax.swing.JFrame implements FileRead {
     
     public void getFileText() {
         try {
-            FileReader fr = new FileReader(userDetails);
-            char f[] = new char[500];
-            fr.read(f);
-            for(char c : f) {
-                userDetailsString += c;
+            userDetailsString = "";
+            BufferedReader br = new BufferedReader(new FileReader(userDetails));
+            String line;
+            while((line = br.readLine()) != null) {
+                userDetailsString += line +"\n";
             }
         }
         catch (Exception e) {
             System.out.println("Error: " + e);
+        }
+        System.out.println("userDetailsString: " + userDetailsString);
+    }
+    
+    public void writeUserInfo() {
+        System.out.println("WRITING USER INFO");
+        try {
+            StringBuffer sb = new StringBuffer(userDetailsString);
+            int start = sb.indexOf("|") + 1;
+            int end = sb.indexOf("|", start + 1);
+            String f = sb.substring(start, end);
+            System.out.println("USER DETAILS: ");
+            System.out.println(f);
+            PrintWriter pw = new PrintWriter(new FileWriter("UserDetails.txt"));
+            pw.println(f);
+            pw.close();
+        }
+        catch (Exception e) {
+            System.out.println("File error: " + e);
         }
     }
     
@@ -186,6 +206,7 @@ public class LoginScreen extends javax.swing.JFrame implements FileRead {
                 Location loc = new Location();
                 loc.setVisible(true);
                 this.setVisible(false);
+                writeUserInfo();
             }   
         }
         catch (Exception e) {
@@ -193,39 +214,55 @@ public class LoginScreen extends javax.swing.JFrame implements FileRead {
         }
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
-    private boolean ValidateUser(String useText, String pasText) throws IOException {
+    public boolean ValidateUser(String useText, String pasText) throws IOException {
         
         System.out.println("UseText: " + useText + " pasText: " + pasText);
         String userText,passText;
         System.out.println("userDetails: " + userDetailsString + ": userDetails");
         boolean val = false;
         StringBuffer sb = new StringBuffer(userDetailsString);
+        System.out.println("String Buffer " + sb);
         int increment = 0;
-        increment = sb.indexOf("$");
+        increment = sb.indexOf("*");
         System.out.println("increment before " + increment);
         if(increment != -1) {
             do {
                 int userStart = increment;
-                int userEnd = sb.indexOf("$",userStart + 1);
-                int passStart = sb.indexOf("*",userEnd + 1);
-                int passEnd = sb.indexOf("*",passStart + 1);
+                currentUser = userStart;
+                int userEnd = sb.indexOf("*",userStart + 1);
+                int passStart = sb.indexOf("$",userEnd + 1);
+                int passEnd = sb.indexOf("$",passStart + 1);
                 System.out.println("userStart: " + userStart + " userEnd " + userEnd + " passStart " + passStart + " passEnd " + passEnd);
                 userText = sb.substring(userStart + 1,userEnd);
                 passText = sb.substring(passStart + 1,passEnd);
                 System.out.println("UserText: " + userText + " PassText: " + passText);
                 if(useText.equals(userText)) {
                     if(pasText.equals(passText)) {
+                        storeCurrentUserIndex();
                         return true;
                     }
                     val = false;
                 }
                 else
                     val = false;
-                increment = sb.indexOf("$",passEnd);
+                increment = sb.indexOf("*",passEnd);
             }while(increment != -1);
             return false;
         }
         return false;
+    }
+    
+    public void storeCurrentUserIndex() {
+        try {
+            PrintWriter pw = new PrintWriter(currentUserIndex);
+            pw.println(currentUser);
+            pw.close();
+        }
+        catch (Exception e) {
+            System.out.println("File error: " + e);
+        }
+        
+        
     }
     
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
