@@ -58,8 +58,9 @@ public class LoginScreen extends javax.swing.JFrame implements FileRead {
         System.out.println("WRITING USER INFO");
         try {
             StringBuffer sb = new StringBuffer(userDetailsString);
-            int start = sb.indexOf("|") + 1;
-            int end = sb.indexOf("|", start + 1);
+            int start = sb.indexOf("$", sb.indexOf("$", currentUser) + 1);
+            int end = sb.indexOf("|", start);
+            System.out.println("start " + start + " end " + end);
             String f = sb.substring(start, end);
             System.out.println("USER DETAILS: ");
             System.out.println(f);
@@ -70,11 +71,6 @@ public class LoginScreen extends javax.swing.JFrame implements FileRead {
         catch (Exception e) {
             System.out.println("File error: " + e);
         }
-    }
-    
-    public void close() {
-        WindowEvent winclose = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winclose);
     }
 
     /**

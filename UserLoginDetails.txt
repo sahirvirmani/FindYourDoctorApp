@@ -1,24 +1,16 @@
 |
-*sahirvirmani*
-$yoyo1$
-Sahir Virmani
-9731060666
+*vasu*
+$garg$
+Vasu Garg
+6497312585
+34
+Male
+VG|
+|
+*bhanu*
+$sinha$
+Bhanu Sinha
+9566192160
 19
 Male
-Java
-|
-*yoyo*
-$honeysingh$
-Yoyo Honey Singh
-9731649764
-23
-Male
-Yoyo
-|
-*Sahir*
-$Sahir$
-Sahir Virmani
-9731060666
-19
-Male
-asdf
+Bhanu Sinha|

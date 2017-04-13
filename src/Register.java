@@ -306,7 +306,7 @@ public class Register extends javax.swing.JFrame  {
                 pw.println(RPhone);
                 pw.println(RAge);
                 pw.println(RGender);
-                pw.println(RAddress);
+                pw.println(RAddress + "|");
                 pw.close();
             }
             catch(Exception e) {

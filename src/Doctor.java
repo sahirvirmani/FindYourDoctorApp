@@ -10,6 +10,7 @@
  */
 import java.io.*;
 import java.util.*;
+import javax.swing.*;
 
 public class Doctor extends javax.swing.JFrame {
 
@@ -18,10 +19,13 @@ public class Doctor extends javax.swing.JFrame {
      */
     String PatName, PatAge, PatGender, PatPhone, PatAddress;
     String DocName, DocSpec, DocFB, DocPhone, DocHospital;
+    Double DoctorRating;
+    int ratingIndex;
     String loc;
     File userDetails, docDetails, locDetails;
     String userDetailsString, docDetailsString, recommendedDoctor;
     int currentUserIndex;
+    JSlider slider;
     public Doctor() {
         initComponents();
         try {
@@ -35,12 +39,14 @@ public class Doctor extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("File error: " + e);
         }
+        getRecommendedDoctor();
         getUserDetails();
         getDocDetails();
         assignDocDetails();
         assignUserDetails();
         updateUserLabels();
         updateDocLabels();
+        paintSliderTicks();
     }
 
     /**
@@ -150,6 +156,11 @@ public class Doctor extends javax.swing.JFrame {
         DoctorFeedbackEnter.setText("DoctorFeedbackText");
 
         SubmitFeedback.setText("Submit");
+        SubmitFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitFeedbackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,29 +178,29 @@ public class Doctor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PatientNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(PatientNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PatientNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PatientAgeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(PatientAgeText, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                                .addComponent(PatientAgeText, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PatientAgeLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(PatientGenderText, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                                .addComponent(PatientGenderText, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PatientAgeLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(PatientPhoneText, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                                .addComponent(PatientPhoneText, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PatientAgeLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(PatientAddressText, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)))
-                        .addGap(55, 55, 55)))
+                                .addComponent(PatientAddressText, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DoctorNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,19 +209,19 @@ public class Doctor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DoctorSpecialityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(DoctorSpecialityText, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
+                        .addComponent(DoctorSpecialityText, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DoctorFeedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(DoctorFeedbackText, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
+                        .addComponent(DoctorFeedbackText, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PatientAgeLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(DoctorPhoneText, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
+                        .addComponent(DoctorPhoneText, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PatientAgeLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(DoctorHospitalText, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)))
+                        .addComponent(DoctorHospitalText, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)))
                 .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -221,9 +232,9 @@ public class Doctor extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DoctorRatingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DoctorFeedbackEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SubmitFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,18 +300,32 @@ public class Doctor extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DoctorRatingSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(DoctorFeedbackEnter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DoctorRatingSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DoctorFeedbackEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(SubmitFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SubmitFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitFeedbackActionPerformed
+        // TODO add your handling code here:
+        String feedback = this.DoctorFeedbackEnter.getText();
+        DoctorRating = (double)(slider.getValue());
+        changeDoctorRating();
+        try {
+            PrintWriter pw = new PrintWriter("DoctorFeedback.txt");
+            pw.println(feedback);
+            pw.close();
+        }
+        catch (Exception e) {
+            System.out.println("File error: " + e);
+        }
+    }//GEN-LAST:event_SubmitFeedbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +362,43 @@ public class Doctor extends javax.swing.JFrame {
         });
     }
     
+    public void changeDoctorRating() {
+        double rating = Double.parseDouble(DocFB);
+        System.out.println("rating: " + rating);
+        double ratingPart = rating / 5;
+        ratingPart = ratingPart * (DoctorRating / 100);
+        System.out.println("Ratingpart: " + ratingPart);
+        if(DoctorRating > (Double.parseDouble(DocFB) * 20))    
+            rating = Double.parseDouble(DocFB) + ratingPart;
+        else
+            rating = Double.parseDouble(DocFB) - ratingPart;
+        rating *= 100;
+        int i = (int)(rating);
+        rating = i / 100.0;
+        String r = Double.toString(rating);
+        int ratingStart, ratingEnd;
+        StringBuffer sb = new StringBuffer(docDetailsString);
+        ratingStart = ratingIndex;
+        ratingEnd = sb.indexOf("\n", ratingStart + 1);
+        sb.replace(ratingStart, ratingEnd, r);
+        int start = 0, end, endCheck;
+        try {
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(docDetails)));
+            do {
+                end = sb.indexOf("\n", start + 1);
+                pw.println(sb.substring(start, end));
+                start = end + 1;
+                endCheck = sb.indexOf("\n", start);
+            }while(endCheck > 0);
+            System.out.println("END");
+            pw.println("$");
+            pw.close();
+        }
+        catch (Exception e) {
+            System.out.println("File error: " + e);
+        }
+    }
+    
     public String getLoc() {
         String str = "";
         try {
@@ -351,17 +413,22 @@ public class Doctor extends javax.swing.JFrame {
         return str;
     }
     
+    public void paintSliderTicks() {
+        slider = this.DoctorRatingSlider;
+        slider.setMajorTickSpacing(20);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+    }
+    
     public void getUserDetails() {
         userDetailsString = "";
         System.out.println("userDetails: ");
         try {
-            Scanner scan = new Scanner (userDetails);
+            BufferedReader br = new BufferedReader(new FileReader("UserDetails.txt"));
             String line;
-            while(!(scan.nextLine().equals("$"))) {
-                line = scan.nextLine();
+            while((line = br.readLine()) != null) {
                 userDetailsString += line + "\n";
-                System.out.println("line is |" + line + "|");
-            }
+            } 
         }
         catch (Exception e) {
             System.out.println("File error: " + e);
@@ -371,21 +438,31 @@ public class Doctor extends javax.swing.JFrame {
     
     public void getDocDetails() {
         docDetailsString = "";
-        System.out.println("docDetails: ");
+        //System.out.println("docDetails: ");
         try {
             Scanner scan = new Scanner (docDetails);
             String line;
-            while(!(scan.nextLine().equals("$"))) {
-                System.out.println(".");
-                line = scan.nextLine();
+            while(!(line = scan.nextLine()).equals("$")) {
+                //System.out.println(".");
                 docDetailsString += line + "\n";
-                System.out.println("line is |" + line + "|");
+                //System.out.println("line is |" + line + "|");
             }
         }
         catch (Exception e) {
             System.out.println("File error: " + e);
         }
-        System.out.println("DOC DETAILS STRING: " + docDetailsString);
+        //System.out.println("DOC DETAILS STRING: " + docDetailsString);
+    }
+    
+    public void getRecommendedDoctor() {
+        try {
+            BufferedReader br = new BufferedReader (new FileReader("RequiredDoctor.txt"));
+            String line = br.readLine();
+            recommendedDoctor = line;
+        }
+        catch(Exception e) {
+            System.out.println("File Error: " + e);
+        }
     }
     
     public void getCurrentUserIndex() {
@@ -400,39 +477,39 @@ public class Doctor extends javax.swing.JFrame {
         currentUserIndex = index;
     }
     
-    public void getRecommendedDoctor() {
+    public void assignUserDetails() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("RecommendedDoctorIndex.txt"));
-            recommendedDoctor = br.readLine();
+            BufferedReader br = new BufferedReader(new FileReader("UserDetails.txt"));
+            String line = br.readLine();
+            if((line = br.readLine()) != null) 
+                PatName = line;
+            if((line = br.readLine()) != null) 
+                PatPhone = line;
+            if((line = br.readLine()) != null) 
+                PatAge = line;
+            if((line = br.readLine()) != null) 
+                PatGender = line;
+            if((line = br.readLine()) != null) 
+                PatAddress = line;
+            
         }
         catch (Exception e) {
             System.out.println("File error: " + e);
         }
-    }
-    
-    public void assignUserDetails() {
-        StringBuffer sb = new StringBuffer(userDetailsString);
-        int start = sb.indexOf("$", currentUserIndex) + 1;
-        int end = sb.indexOf("\n");
-        PatName = sb.substring(start, end);
-        start = end + 1;
-        end = sb.indexOf("\n", start);
-        PatPhone = sb.substring(start,end);
-        start = end + 1;
-        end = sb.indexOf("\n", start);
-        PatAge = sb.substring(start,end);
-        start = end + 1;
-        end = sb.indexOf("\n", start);
-        PatGender = sb.substring(start,end);
-        start = end + 1;
-        end = sb.indexOf("|", start) - 1;
-        PatAddress = sb.substring(start,end);
+        
+        System.out.println("PatName : " + PatName);
+        System.out.println("PatAge : " + PatAge);
+        System.out.println("PatGender : " + PatGender);
+        System.out.println("PatPhone : " + PatPhone);
+        System.out.println("PatAddress : " + PatAddress);
     }
     
     public void assignDocDetails() {
+        System.out.println("Assign doc details");
+        System.out.println("FILE TEXT: " + docDetailsString + "|");
         StringBuffer sb = new StringBuffer(docDetailsString);
         int start = sb.indexOf(recommendedDoctor);
-        int end = sb.indexOf("\n");
+        int end = sb.indexOf("\n", start);
         DocSpec = sb.substring(start, end);
         System.out.println("DocSpec: " + DocSpec);
         start = end + 1;
@@ -441,6 +518,7 @@ public class Doctor extends javax.swing.JFrame {
         System.out.println("DocName: " + DocName);
         start = end + 1;
         end = sb.indexOf("\n",start);
+        ratingIndex = start;
         DocFB = sb.substring(start, end);
         System.out.println("DocFB: " + DocFB);
         start = end + 1;
