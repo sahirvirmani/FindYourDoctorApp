@@ -28,6 +28,7 @@ public class Register extends javax.swing.JFrame  {
         initComponents();
         setTitle("Registration");
         this.RPasswordNoMatch.setVisible(false);
+        this.RPhoneNotValid.setVisible(false);
         gender = new String[3];
         gender[0] = "Male";
         gender[1] = "Female";
@@ -52,6 +53,7 @@ public class Register extends javax.swing.JFrame  {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -74,8 +76,11 @@ public class Register extends javax.swing.JFrame  {
         RAgeText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         RGenderComboBox = new javax.swing.JComboBox<>();
+        RPhoneNotValid = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
+
+        jLabel10.setText("jLabel10");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +147,9 @@ public class Register extends javax.swing.JFrame  {
             }
         });
 
+        RPhoneNotValid.setForeground(new java.awt.Color(255, 0, 0));
+        RPhoneNotValid.setText("Phone number not valid");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,7 +206,9 @@ public class Register extends javax.swing.JFrame  {
                                                     .addComponent(RAgeText, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
                                                 .addComponent(RGenderComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(18, 18, 18)
-                        .addComponent(RPasswordNoMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(RPasswordNoMatch, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(RPhoneNotValid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 164, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -236,7 +246,9 @@ public class Register extends javax.swing.JFrame  {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(RPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(RPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(RPhoneNotValid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -278,9 +290,13 @@ public class Register extends javax.swing.JFrame  {
         RUsername = RUsernameText.getText();
         RPassword = RPasswordText.getPassword();
         RPasswordR = RPasswordRText.getPassword();
+        RPhone = RPhoneText.getText();
         if(!ValidatePassword(RPassword,RPasswordR)) {
             System.out.println("password no match");
             this.RPasswordNoMatch.setVisible(true);
+        }
+        else if(!ValidatePhone(RPhone)) {
+            this.RPhoneNotValid.setVisible(true);
         }
         else {
             this.RPasswordNoMatch.setVisible(false);
@@ -288,7 +304,6 @@ public class Register extends javax.swing.JFrame  {
                 RPass += c;
             }
             RName = RNameText.getText();
-            RPhone = RPhoneText.getText();
             RAddress = RAddressText.getText();
             RAge = Integer.parseInt(RAgeText.getText());
             int gen = this.RGenderComboBox.getSelectedIndex();
@@ -335,6 +350,17 @@ public class Register extends javax.swing.JFrame  {
             }
         return true;
     }
+    
+    public boolean ValidatePhone(String phone) {
+        if(phone.length() != 10)
+            return false;
+        StringBuffer sb = new StringBuffer(phone);
+        for(int i = 0; i < sb.length(); i++) {
+            if(!Character.isDigit(sb.charAt(i)))
+                return false;
+        }
+        return true;
+    }
     /**
      * @param args the command line arguments
      */
@@ -378,11 +404,13 @@ public class Register extends javax.swing.JFrame  {
     private javax.swing.JLabel RPasswordNoMatch;
     private javax.swing.JPasswordField RPasswordRText;
     private javax.swing.JPasswordField RPasswordText;
+    private javax.swing.JLabel RPhoneNotValid;
     private javax.swing.JTextField RPhoneText;
     private javax.swing.JButton RResetButton;
     private javax.swing.JButton RSubmitButton;
     private javax.swing.JTextField RUsernameText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

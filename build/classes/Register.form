@@ -7,6 +7,11 @@
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel10"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -100,7 +105,10 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="RPasswordNoMatch" min="-2" pref="230" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="RPasswordNoMatch" pref="230" max="32767" attributes="0"/>
+                          <Component id="RPhoneNotValid" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace min="0" pref="164" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -146,7 +154,10 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="RPhoneText" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="RPhoneText" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="RPhoneNotValid" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -331,6 +342,14 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RPhoneNotValid">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Phone number not valid"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

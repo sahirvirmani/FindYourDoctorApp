@@ -325,6 +325,9 @@ public class Doctor extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("File error: " + e);
         }
+        Logout log = new Logout();
+        this.setVisible(false);
+        log.setVisible(true);
     }//GEN-LAST:event_SubmitFeedbackActionPerformed
 
     /**
